@@ -53,9 +53,13 @@
 
 
 
-    
+    <form method="post">
+      {% csrf_token %}  # Add CSRF token for security
+      {{ form.as_p }}  # Render form fields using form.as_p
+      <button type="submit" class="btn"> PLAN NOW</button>
+    </form>
       
-      <button class="btn"> PLAN NOW</button>
+      #<button class="btn"> PLAN NOW</button>
 
     </section>
 
