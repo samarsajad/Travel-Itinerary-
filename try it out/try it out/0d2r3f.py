@@ -1,6 +1,3 @@
-from django.shortcuts import render
-from .forms import TravelPlanForm 
-from .models import Restros
 import pandas as pd
 from geopy.distance import geodesic
 import os
@@ -68,21 +65,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-def travel_plan(request):
-    if request.method == 'POST':
-        form = TravelPlanForm(request.POST)  # Create form with POST data
-        if form.is_valid():  # Validate form data
-            days = form.cleaned_data['days']
-            location = form.cleaned_data['location']
-            budget = form.cleaned_data['budget']
-            # Call generate_travel_plan with retrieved data
-            travel_plan = generate_travel_plan(location, days, budget)
-            context = {'travel_plan': travel_plan}
-            return render(request, 'travel_plan.html', context)
-        else:
-            # Handle invalid form data (optional)
-            pass
-    else:
-        form = TravelPlanForm()  # Create an empty form for initial display
-    context = {'form': form}
-    return render(request, 'tripplanner.html', context)
